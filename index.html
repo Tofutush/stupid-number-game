@@ -1,32 +1,134 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stupid number game</title>
 <style>
-#grid {
-	user-select: none;
-	font-size: 36px;
-	border-collapse: collapse;
+body {
+	display: flex;
+	font-family: arial rounded mt, consolas;
+	font-size: 18px;
+	justify-content: center;
 }
-#grid td {
-	border: 3px solid #000;
+
+button {
+	font-family: arial rounded mt, consolas;
+	font-size: 18px;
+	border: 0;
+	cursor: pointer;
+	padding: 12px;
+	margin: 18px 0;
+	border-radius: 12px;
+	width: fit-content;
+}
+
+#aside {
+	width: 600px;
+	margin: 36px;
+}
+
+#grid {
+	display: grid;
+	background-color: #eee;
+	padding: 8px;
+	margin: 0 36px;
+	border-radius: 12px;
+}
+
+#grid div, .num {
+	font-size: 32px;
 	width: 50px;
 	height: 50px;
-	text-align: center;
-	line-height: 50px;
+	border-radius: 12px;
+	margin: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	user-select: none;
+}
+
+#grid div.empty {
+	background-color: #fff;
+}
+#grid div.hover {
+	opacity: 0.3;
+}
+#grid div.filled {
+	opacity: 1;
+}
+
+.c00202e {
+	background-color: #00202e;
+	color: #fff;
+}
+.c003f5c {
+	background-color: #003f5c;
+	color: #fff;
+}
+.c2c4875 {
+	background-color: #2c4875;
+	color: #fff;
+}
+.c8a508f {
+	background-color: #8a508f;
+	color: #fff;
+}
+.cbc5090 {
+	background-color: #bc5090;
+	color: #fff;
+}
+.cff6361 {
+	background-color: #ff6361;
+	color: #fff;
+}
+.cff8531 {
+	background-color: #ff8531;
+	color: #fff;
+}
+.cffa600 {
+	background-color: #ffa600;
+	color: #000;
+}
+.cffd380 {
+	background-color: #ffd380;
+	color: #000;
+}
+.cffebc6 {
+	background-color: #ffebc6;
+	color: #000;
 }
 </style>
 </head>
 <body>
-<p>Stupid number game! Rules: put numbers onto empty squares in the grid by clicking. If the sum of all the nine squares add up to form a number that ends with zero, all nine squares will be cleared. Else, the number you clicked on stays there. The game is won when the 10 × 10 board is clear, and lost when there are no empty squares left.</p>
-<div style="display:flex;">
-	<table id="grid"></table>
-	<div>
-		<p>Current number: <span id="cur"/></p>
-		<p>Next Number: <span id="nex"/></p>
-		<a href="">Restart</a>
+	<div id="aside">
+		<p>Stupid number game! Rules: put numbers onto empty squares in the grid by clicking. If the sum of all the nine squares add up to form a number that ends with zero, all nine squares will be cleared. Else, the number you clicked on stays there. The game is won when the board is clear, and lost when there are no empty squares left.</p>
+		<div style="display: flex;">
+			<p>Current number: <div class="num" id="curr"></div></p>
+		</div>
+		<div style="display: flex;">
+			<p>Next Number: <div class="num" id="next"></div></p>
+		</div>
+		<button class="cbc5090" onclick="toggleCheatMode()">Cheat Mode Off</button>
+		<p id="cheat" style="display: none;"></p>
+		<button class="cff6361" onclick="window.location.reload()">Restart</button>
 	</div>
-</div>
-<script src="game.js"></script>
+	<div id="grid"></div>
+	<script>
+		function toggleCheatMode() {
+			// very weird code but me lazy
+			let btn = document.querySelector('button');
+			let p = document.getElementById('cheat');
+			if(btn.innerText == 'Cheat Mode Off') {
+				console.log('off to on');
+				btn.innerText = 'Cheat Mode On';
+				p.style.display = 'block';
+			} else {
+				console.log('on to off');
+				btn.innerText = 'Cheat Mode Off';
+				p.style.display = 'none';
+			}
+		}
+	</script>
+	<script src="game2.js"></script>
 </body>
 </html>
